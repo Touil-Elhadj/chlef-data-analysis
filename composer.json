@@ -1,0 +1,47 @@
+{
+    "name": "touilelhadj/chlef-touilelhadj",
+    "description": "Trilingual web platform (Arabic, French, English) for adolescent overweight epidemiological surveillance in the Wilaya of Chlef, Algeria. Master-thesis research instrument, Hassiba Benbouali University of Chlef (UHBC), 2025-2026.",
+    "type": "project",
+    "license": "MIT",
+    "keywords": [
+        "epidemiology",
+        "adolescent-health",
+        "overweight",
+        "obesity",
+        "survey",
+        "trilingual",
+        "Algeria",
+        "Chlef",
+        "biostatistics"
+    ],
+    "homepage": "https://github.com/Touil-Elhadj/chlef-touilelhadj",
+    "authors": [
+        {
+            "name": "Elhadj TOUIL",
+            "email": "touilelhadj@live.com",
+            "homepage": "https://orcid.org/0009-0000-2400-459X",
+            "role": "Principal investigator"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/Touil-Elhadj/chlef-touilelhadj/issues",
+        "source": "https://github.com/Touil-Elhadj/chlef-touilelhadj"
+    },
+    "require": {
+        "php": ">=8.0",
+        "ext-pdo": "*",
+        "ext-mbstring": "*",
+        "ext-json": "*",
+        "touilelhadj/biostat-php": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TouilElhadj\\ChlefPlatform\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "stable"
+}

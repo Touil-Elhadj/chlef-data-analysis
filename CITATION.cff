@@ -1,0 +1,54 @@
+cff-version: 1.2.0
+title: >-
+  Chlef-Biostat-2026: a trilingual web platform for
+  a cross-sectional study on adolescent overweight in
+  the Wilaya of Chlef, Algeria
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Elhadj
+    family-names: TOUIL
+    email: touilelhadj@live.com
+    orcid: 'https://orcid.org/0009-0000-2400-459X'
+    affiliation: >-
+      Faculty of Medicine, Hassiba Benbouali University
+      of Chlef (UHBC), Algeria
+repository-code: 'https://github.com/Touil-Elhadj/chlef-touilelhadj'
+url: 'https://github.com/Touil-Elhadj/chlef-touilelhadj'
+abstract: >-
+  Chlef-Biostat-2026 is a self-contained trilingual
+  (Arabic / French / English, RTL-aware) data-collection
+  web platform for a cross-sectional study on adolescent
+  overweight in the Wilaya of Chlef, Algeria (n = 1220,
+  ages 14-19, academic year 2025-2026). The analytic
+  engine is provided by the separately-distributed
+  biostat-php Composer library (touilelhadj/biostat-php),
+  which implements descriptive, bivariate and multivariate
+  statistical methods (logistic regression, GLMM by PQL,
+  GEE, MICE with Rubin's pooling, VIF, Box-Tidwell,
+  Benjamini-Hochberg FDR) in pure PHP without dependency
+  on R or SPSS.
+keywords:
+  - epidemiology
+  - PHP
+  - cross-sectional-study
+  - adolescent-overweight
+  - adolescent-obesity
+  - survey
+  - trilingual
+  - Algeria
+  - Chlef
+references:
+  - type: software
+    title: 'biostat-php'
+    authors:
+      - given-names: Elhadj
+        family-names: TOUIL
+        orcid: 'https://orcid.org/0009-0000-2400-459X'
+    repository-code: 'https://github.com/Touil-Elhadj/biostat-php'
+    version: '1.0.0'
+license: MIT
+version: 2.0.0
+date-released: '2026-05-18'

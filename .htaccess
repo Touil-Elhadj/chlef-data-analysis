@@ -1,0 +1,61 @@
+# ════════════════════════════════════════════════════════════════
+# Apache configuration — Chlef-Biostat-2026
+# ════════════════════════════════════════════════════════════════
+
+# ── Force HTTPS (works behind alwaysdata's proxy) ──────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on [OR]
+    RewriteCond %{HTTP:X-Forwarded-Proto} =http
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# ── HSTS: only activate AFTER confirming HTTPS works everywhere ─
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ── Hide server tokens ─────────────────────────────────────────
+ServerSignature Off
+
+# ── Protect dotfiles (.env, .git, .htaccess itself) ────────────
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# ── Protect sensitive backend / library files ──────────────────
+<Files "config.php">
+    Require all denied
+</Files>
+<Files "computed_scores.php">
+    Require all denied
+</Files>
+<Files "about_data.inc.php">
+    Require all denied
+</Files>
+<Files "composer.json">
+    Require all denied
+</Files>
+<Files "composer.lock">
+    Require all denied
+</Files>
+
+# ── Block direct access to dump / log / sql / md / cff files ───
+<FilesMatch "\.(log|sql|env|md|cff|yml|yaml|bib|ini)$">
+    Require all denied
+</FilesMatch>
+
+# ── Block direct access to non-public directories ──────────────
+# vendor/ contains the Composer-installed biostat-php library
+# src/   contains the platform's StudySpecificAnalyses + ChartDataGenerator
+RedirectMatch 404 ^/(logs|database|tests|bin|docs|vendor|src)(/|$)
+
+# ── Disable directory listings ─────────────────────────────────
+Options -Indexes
+
+# ── Custom error pages (optional) ──────────────────────────────
+ErrorDocument 403 /login.php
+ErrorDocument 404 /login.php

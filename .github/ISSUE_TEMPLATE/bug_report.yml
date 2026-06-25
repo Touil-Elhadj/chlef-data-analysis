@@ -1,0 +1,70 @@
+name: Bug report
+description: Report a defect in the platform or the BiostatPHP library.
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report.
+
+        **Security issues**: if your report concerns a vulnerability, please
+        send it by e-mail instead (see `SECURITY.md`) — do not open a public
+        issue.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear and concise description of the bug.
+      placeholder: When I click "Submit" on step 5, the form...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Log in as admin
+        2. Open /index.php
+        3. Fill in step 1 with ...
+        4. Click "Next" — observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+
+  - type: input
+    id: php-version
+    attributes:
+      label: PHP version
+      placeholder: "8.2.10"
+    validations:
+      required: true
+
+  - type: input
+    id: db-version
+    attributes:
+      label: Database version
+      placeholder: "MariaDB 10.11.4"
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser (if relevant)
+      placeholder: "Firefox 124 on Ubuntu 22.04"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log lines
+      description: |
+        Paste any relevant lines from `logs/errors.log`.
+        **Important**: redact participant IP addresses and any personal data
+        before pasting.
+      render: text

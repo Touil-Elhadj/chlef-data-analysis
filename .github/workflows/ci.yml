@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-test:
+    name: Lint & test (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '8.0', '8.1', '8.2', '8.3' ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, intl, pdo_mysql, json
+          coverage: none
+          tools: composer:v2
+
+      - name: Show PHP and Composer versions
+        run: |
+          php -v
+          composer --version
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ matrix.php }}-${{ hashFiles('**/composer.json') }}
+          restore-keys: |
+            ${{ runner.os }}-php-${{ matrix.php }}-
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction --no-dev
+
+      - name: Syntax check (php -l) on every .php file
+        run: |
+          set -e
+          find . -type f -name '*.php' \
+            -not -path './vendor/*' \
+            -not -path './node_modules/*' \
+            -print0 \
+            | xargs -0 -n1 php -l
+
+      - name: Run unit tests (CLI mode)
+        run: php tests/run_tests.php
+
+  static-analysis:
+    name: Static analysis (best-effort)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, intl, pdo_mysql, json
+          tools: phpcs
+
+      - name: Run phpcs (PSR-12, warnings only)
+        run: phpcs --standard=PSR12 --warning-severity=0 --extensions=php --ignore=vendor,node_modules . || true

@@ -1,0 +1,2 @@
+# Empty marker — logs/ is gitignored except for this file.
+# Application errors will be written here at runtime; never commit them.

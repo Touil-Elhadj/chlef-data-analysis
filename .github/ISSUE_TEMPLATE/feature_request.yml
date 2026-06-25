@@ -1,0 +1,33 @@
+name: Feature request
+description: Suggest a new feature, a new statistical method, or an improvement.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: What problem would this feature solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed solution
+      description: How should it work? Mock-ups, pseudocode and references welcome.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Scientific references (for statistical methods)
+      description: |
+        If you propose a new statistical method, please cite at least
+        one peer-reviewed reference and the equivalent implementation
+        in R or SPSS for verification.
