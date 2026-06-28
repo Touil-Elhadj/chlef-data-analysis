@@ -9,6 +9,7 @@
 [![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-4479A1?logo=mysql&logoColor=white)](https://www.mysql.com/)
 [![CI](https://github.com/Touil-Elhadj/chlef-touilelhadj/actions/workflows/ci.yml/badge.svg)](https://github.com/Touil-Elhadj/chlef-touilelhadj/actions)
 [![Status](https://img.shields.io/badge/status-active-success)](https://github.com/Touil-Elhadj/chlef-touilelhadj)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21014110.svg)](https://doi.org/10.5281/zenodo.21014110)
 
 ---
 
